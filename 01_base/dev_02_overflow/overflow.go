@@ -20,7 +20,7 @@ func add(num1, num2 int8) (int8, error) {
 		return 0, errors.New("Overflow +")
 	}
 
-	if num2 < 0 && num1 < math.MaxInt8-num2 {
+	if num2 < 0 && num1 < math.MinInt8-num2 {
 		return 0, errors.New("Overflow -")
 	}
 
@@ -47,24 +47,35 @@ func main() {
 		fmt.Println(res2)
 	}
 
+	fmt.Println("add(126, 1)")
 	sum1, errSum := add(126, 1)
 	if errSum != nil {
-		fmt.Printf("add(126, 1) %v - %#v\n", sum1, errSum)
+		fmt.Printf("%v - %#v\n", sum1, errSum)
 	} else {
 		fmt.Println(sum1)
 	}
 
+	fmt.Println("add(127, 1)")
 	sum2, errSum := add(127, 1)
 	if errSum != nil {
-		fmt.Printf("add(127, 1) %v - %#v\n", sum2, errSum)
+		fmt.Printf("%v - %#v\n", sum2, errSum)
 	} else {
-		fmt.Println(sum1)
+		fmt.Println(sum2)
 	}
 
+	fmt.Println("add(-128, -1)")
 	sum3, errSum := add(-128, -1)
 	if errSum != nil {
-		fmt.Printf("add(-128, -1) %v - %#v\n", sum3, errSum)
+		fmt.Printf("%v - %#v\n", sum3, errSum)
 	} else {
-		fmt.Println(sum1)
+		fmt.Println(sum3)
+	}
+
+	fmt.Println("add(-127, -1)")
+	sum4, errSum := add(-127, -1)
+	if errSum != nil {
+		fmt.Printf("%v - %#v\n", sum4, errSum)
+	} else {
+		fmt.Println(sum4)
 	}
 }
